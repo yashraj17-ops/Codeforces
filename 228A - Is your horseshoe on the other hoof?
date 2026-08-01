@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[4];
+
+    for (int i = 0; i < 4; i++)
+        cin >> arr[i];
+
+    int unique = 0;
+
+    for (int i = 0; i < 4; i++) {
+        bool found = false;
+
+        for (int j = 0; j < i; j++) {
+            if (arr[i] == arr[j]) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+            unique++;
+    }
+
+    cout << 4-unique;
+}
