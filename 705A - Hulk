@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+string feelings(int n) {
+    if (n == 1)
+        return " I hate it";
+
+    if (n % 2 == 0)
+        return  " I love that"+feelings(n - 1);
+    else
+        return " I hate that"+feelings(n - 1);
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    cout << feelings(n);
+
+    return 0;
+}
