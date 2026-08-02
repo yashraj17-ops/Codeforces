@@ -3,19 +3,19 @@ using namespace std;
 
 string feelings(int n) {
     if (n == 1)
-        return " I hate it";
+        return "I hate";
 
     if (n % 2 == 0)
-        return  " I love that"+feelings(n - 1);
+        return feelings(n - 1) + " that I love";
     else
-        return " I hate that"+feelings(n - 1);
+        return feelings(n - 1) + " that I hate";
 }
 
 int main() {
     int n;
     cin >> n;
 
-    cout << feelings(n);
+    cout << feelings(n) << " it";
 
     return 0;
 }
