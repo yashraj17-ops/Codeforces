@@ -18,7 +18,7 @@ using namespace std;
             cout<<"NO";
         }
         else {
-        for(int i=0;i<n;i++){
+        for(int i=0;i<26;i++){
             if(freq[i]==0){
                 is=false;
                 break;
