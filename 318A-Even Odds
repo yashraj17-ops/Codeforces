@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+   int n,k,od,t;
+   cin>>n>>k;
+   if(n%2==0)
+   {
+    od=n/2;
+    }
+   else if(n%2!=0){
+    od=n/2+1;
+
+   }
+   if(k<=od)
+   {
+    t=2*k-1;
+    cout<<t;
+   }
+   else if(k>od)
+   {
+    t=2*(k-od);
+    cout<<t;
+       
+
+   }}
