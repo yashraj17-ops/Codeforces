@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+   int t;
+   cin>>t;
+   unordered_map<string,int>freq;
+   while(t--){
+    string s;
+    cin>>s;
+    freq[s]++;
+
+   }
+   string maxWord;
+   int maxFreq=0;
+   for(auto[word,count]:freq){
+    if(count>maxFreq){
+        maxFreq=count;
+        maxWord=word;
+    }
+   }
+   cout<<maxWord<<endl;
+    
+   
+}
