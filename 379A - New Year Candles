@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+
+    int result = a;
+
+    while (a >= b) {
+        int newCandles = a / b;
+        result += newCandles;
+        a = newCandles + a % b;
+    }
+
+    cout << result;
+
+    return 0;
+}
