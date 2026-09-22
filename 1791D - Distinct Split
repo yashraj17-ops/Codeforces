@@ -9,33 +9,48 @@ int main() {
         string s;
         cin >> s;
 
-        unordered_set<char> left, right;
-        int freq[26] = {0};
+        int n = s.size();
 
-        // Put all characters in right
+        vector<int> left(26, 0);
+        vector<int> right(26, 0);
+
+        // Initially, everything is on the right
         for (char c : s) {
-            right.insert(c);
-            freq[c - 'a']++;
+            right[c - 'a']++;
+        }
+
+        int distinctLeft = 0;
+        int distinctRight = 0;
+
+        // Count distinct characters in the whole string
+        for (int i = 0; i < 26; i++) {
+            if (right[i] > 0) {
+                distinctRight++;
+            }
         }
 
         int ans = 0;
 
-        for (int i = 0; i < s.size() - 1; i++) {
+        // Split after s[i]
+        for (int i = 0; i < n - 1; i++) {
 
-            char c = s[i];
+            int x = s[i] - 'a';
 
-            // Move c to left
-            left.insert(c);
+            // Move character from right to left
+            right[x]--;
+            left[x]++;
 
-            // Remove its occurrence from right
-            freq[c - 'a']--;
-
-            // If no more c exists in right, remove it
-            if (freq[c - 'a'] == 0) {
-                right.erase(c);
+            // It is appearing for the first time in left
+            if (left[x] == 1) {
+                distinctLeft++;
             }
 
-            ans = max(ans, (int)(left.size() + right.size()));
+            // It has completely disappeared from right
+            if (right[x] == 0) {
+                distinctRight--;
+            }
+
+            ans = max(ans, distinctLeft + distinctRight);
         }
 
         cout << ans << '\n';
