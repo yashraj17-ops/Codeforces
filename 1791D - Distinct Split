@@ -6,15 +6,16 @@ int main() {
     cin >> t;
 
     while (t--) {
+        int n;
+        cin >> n;
+
         string s;
         cin >> s;
-
-        int n = s.size();
 
         vector<int> left(26, 0);
         vector<int> right(26, 0);
 
-        // Initially, everything is on the right
+        // Initially, everything is in the right part
         for (char c : s) {
             right[c - 'a']++;
         }
@@ -22,7 +23,7 @@ int main() {
         int distinctLeft = 0;
         int distinctRight = 0;
 
-        // Count distinct characters in the whole string
+        // Count distinct characters in right
         for (int i = 0; i < 26; i++) {
             if (right[i] > 0) {
                 distinctRight++;
@@ -31,21 +32,21 @@ int main() {
 
         int ans = 0;
 
-        // Split after s[i]
+        // Try every possible split
         for (int i = 0; i < n - 1; i++) {
 
             int x = s[i] - 'a';
 
-            // Move character from right to left
-            right[x]--;
+            // Move s[i] from right to left
             left[x]++;
+            right[x]--;
 
-            // It is appearing for the first time in left
+            // First occurrence in left
             if (left[x] == 1) {
                 distinctLeft++;
             }
 
-            // It has completely disappeared from right
+            // No occurrence remaining in right
             if (right[x] == 0) {
                 distinctRight--;
             }
