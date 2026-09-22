@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        string s;
+        cin >> s;
+
+        unordered_set<char> left, right;
+        int freq[26] = {0};
+
+        // Put all characters in right
+        for (char c : s) {
+            right.insert(c);
+            freq[c - 'a']++;
+        }
+
+        int ans = 0;
+
+        for (int i = 0; i < s.size() - 1; i++) {
+
+            char c = s[i];
+
+            // Move c to left
+            left.insert(c);
+
+            // Remove its occurrence from right
+            freq[c - 'a']--;
+
+            // If no more c exists in right, remove it
+            if (freq[c - 'a'] == 0) {
+                right.erase(c);
+            }
+
+            ans = max(ans, (int)(left.size() + right.size()));
+        }
+
+        cout << ans << '\n';
+    }
+
+    return 0;
+}
